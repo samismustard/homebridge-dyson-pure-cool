@@ -177,9 +177,9 @@ function DysonPureCoolDevice(platform, name, serialNumber, productType, version,
     airPurifierService
         .getCharacteristic(Characteristic.RotationSpeed)
         .setProps({
-            minStep: 10,
-            minValue: 0,
-            maxValue: 100
+            minStep: 1,
+            minValue: 1,
+            maxValue: 10
         });
 
     // Updates the temperature service
@@ -650,7 +650,7 @@ function DysonPureCoolDevice(platform, name, serialNumber, productType, version,
 
             // Sets the fan speed based on the auto setting
             if (content['product-state']['fnsp'] !== 'AUTO') {
-                airPurifierService.updateCharacteristic(Characteristic.RotationSpeed, Number.parseInt(content['product-state']['fnsp']) * 10);
+                airPurifierService.updateCharacteristic(Characteristic.RotationSpeed, Number.parseInt(content['product-state']['fnsp']);
             }
 
             // Sets the state of the night mode switch
@@ -754,7 +754,7 @@ function DysonPureCoolDevice(platform, name, serialNumber, productType, version,
 
             // Sets the fan speed based on the auto setting
             if (content['product-state']['fnsp'][1] !== 'AUTO') {
-                airPurifierService.updateCharacteristic(Characteristic.RotationSpeed, Number.parseInt(content['product-state']['fnsp'][1]) * 10);
+                airPurifierService.updateCharacteristic(Characteristic.RotationSpeed, Number.parseInt(content['product-state']['fnsp'][1]);
             }
 
             // Sets the state of the night mode switch
@@ -887,11 +887,11 @@ function DysonPureCoolDevice(platform, name, serialNumber, productType, version,
 
     // Subscribes for changes of the rotation speed characteristic
     airPurifierService.getCharacteristic(Characteristic.RotationSpeed).on('set', function (value, callback) {
-        platform.log.info(serialNumber + ' - set RotationSpeed to ' + value + ': ' + JSON.stringify({ fnsp: ('0000' + Math.round(value / 10.0).toString()).slice(-4) }));
+        platform.log.info(serialNumber + ' - set RotationSpeed to ' + value + ': ' + JSON.stringify({ fnsp: ('0000' + Math.round(value).toString()).slice(-4) }));
         device.mqttClient.publish(productType + '/' + serialNumber + '/command', JSON.stringify({
             msg: 'STATE-SET',
             time: new Date().toISOString(),
-            data: { fnsp: ('0000' + Math.round(value / 10.0).toString()).slice(-4) }
+            data: { fnsp: ('0000' + Math.round(value).toString()).slice(-4) }
         }));
         callback(null);
     });
