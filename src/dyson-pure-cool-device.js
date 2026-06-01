@@ -648,11 +648,12 @@ function DysonPureCoolDevice(platform, name, serialNumber, productType, version,
                 airPurifierService.updateCharacteristic(Characteristic.FilterLifeLevel, Math.ceil(filterLife * 100));
             }
 
-            // Sets the fan speed based on the auto setting
-            if (content['product-state']['fnsp'] !== 'AUTO') {
-                airPurifierService.updateCharacteristic(Characteristic.RotationSpeed, Number.parseInt(content['product-state']['fnsp']);
+            // Sets the fan speed based on the auto setting                                                                                                                                                                                                             
+            if (content['product-state']['fnsp'] === 'AUTO') {                                                                                                                                                                                                          
+                airPurifierService.updateCharacteristic(Characteristic.RotationSpeed, 5);                                                                                                                                                                               
+                } else {                                                                                                                                                                                                                                                  
+                airPurifierService.updateCharacteristic(Characteristic.RotationSpeed, Number.parseInt(content['product-state']['fnsp']));                                                                                                                               
             }
-
             // Sets the state of the night mode switch
             if (nightModeSwitchService) {
                 nightModeSwitchService.updateCharacteristic(Characteristic.On, content['product-state']['nmod'] !== 'OFF');
@@ -753,9 +754,11 @@ function DysonPureCoolDevice(platform, name, serialNumber, productType, version,
             }
 
             // Sets the fan speed based on the auto setting
-            if (content['product-state']['fnsp'][1] !== 'AUTO') {
-                airPurifierService.updateCharacteristic(Characteristic.RotationSpeed, Number.parseInt(content['product-state']['fnsp'][1]);
-            }
+            if (content['product-state']['fnsp'][1] === 'AUTO') {                                                                                                                                                                                       
+                      airPurifierService.updateCharacteristic(Characteristic.RotationSpeed, 5);                                                                                                                                                               
+                  } else {                                                                                                                                                                                                                                    
+                      airPurifierService.updateCharacteristic(Characteristic.RotationSpeed, Number.parseInt(content['product-state']['fnsp'][1]));                                                                                                            
+                  } 
 
             // Sets the state of the night mode switch
             if (nightModeSwitchService) {
