@@ -1,4 +1,21 @@
-# homebridge-dyson-pure-cool
+# homebridge-dyson-pure-cool — Optimised for PC1
+
+## Overview
+
+This setup is specifically designed for **PC1**, acting as the dedicated Homebridge controller and Dyson integration host.
+
+# PC1 Network Requirements
+
+PC1 and all Dyson devices MUST:
+- Be on the same subnet
+- Use the same router
+- Avoid guest Wi-Fi networks
+- Have stable local IP addresses
+
+Recommended:
+```bash
+PC1 IP: 192.168.1.10
+Dyson TP04: 192.168.1.50
 
 ## IMPORTANT: Breaking Changes in version 2.0.0
 
