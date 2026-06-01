@@ -63,7 +63,7 @@ const knownProducts = {
     model: 'Dyson Pure Cool (Tower)',
     hardwareRevision: 'TP11',
     hasAdvancedAirQualitySensors: true,
-    hasTemperatureAndHumiditySensors: false,
+    hasTemperatureAndHumiditySensors: true,
     hasHeating: false,
     hasHumidifier: false,
     hasJetFocus: false,
