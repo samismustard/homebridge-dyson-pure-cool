@@ -1027,7 +1027,7 @@ function DysonPureCoolDevice(platform, name, serialNumber, productType, version,
             device.mqttClient.publish(productType + '/' + serialNumber + '/command', JSON.stringify({
                 msg: 'STATE-SET',
                 time: new Date().toISOString(),
-                data: value ? { rhtm: 'ON' } : { rhtm: 'OFF', fmod: 'OFF' }
+                data: value ? { rhtm: 'ON' } : { rhtm: 'OFF' }
             }));
             callback(null);
         });
